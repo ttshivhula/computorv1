@@ -6,7 +6,7 @@
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 10:39:53 by ttshivhu          #+#    #+#             */
-/*   Updated: 2018/09/11 12:24:02 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2018/09/11 12:47:26 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,17 @@ static int		get_exponent(char **str)
 	exp = 0;
 	while (*(*str) == '*' || *(*str) == 'X' || *(*str) == '^')
 		(*str)++;
-	while (isdigit(*(*str)))
+	if (isdigit(*(*str)))
 	{
-		exp *= 10;
-		exp += *(*str) - '0';
-		(*str)++;
+		while (isdigit(*(*str)))
+		{
+			exp *= 10;
+			exp += *(*str) - '0';
+			(*str)++;
+		}
 	}
+	else
+		return (1);
 	return (exp);
 }
 
@@ -95,7 +100,12 @@ void			read_values(char *s, t_values **values)
 	while (*s)
 	{
 		n = get_num(&s, &multi);
-		exp = get_exponent(&s);
-		add_val(values, n, exp);
+		if (*s == '+' || *s == '-')
+			add_val(values, n, 0);
+		else
+		{
+			exp = get_exponent(&s);
+			add_val(values, n, exp);
+		}
 	}
 }
