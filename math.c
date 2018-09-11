@@ -6,7 +6,7 @@
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:43:21 by ttshivhu          #+#    #+#             */
-/*   Updated: 2018/09/11 11:58:12 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2018/09/11 13:00:42 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,14 @@ static void		solve(double a, double b, double c, int exp)
 	x1 = (-b + root(b * b - 4 * a * c)) / (2 * a);
 	x2 = (-b - root(b * b - 4 * a * c)) / (2 * a);
 	if (exp == 2)
-		printf("X1: %f X2: %f\n", x1, x2);
+	{
+		printf("Discriminant is strictly positive, the two solutions are:\n");
+		printf("%f\n%f\n", x1, x2);
+	}
 	else
 	{
 		x1 = (-c) / b;
-		printf("X: %f\n", x1);
+		printf("The solution is:\n%f\n", x1);
 	}
 }
 
@@ -65,7 +68,7 @@ void			ft_ans(double a, double b, double c, int exp)
 		printf("%.3fx", b);
 		printf("%+.3f = 0\n", c);
 	}
-	else
+	printf("Polynomial degree: %d\n", exp);
+	(exp == 2 || exp == 1) ? solve(a, b, c, exp) :
 		printf("can't solve: %d exponents\n", exp);
-	(exp == 2 || exp == 1) ? solve(a, b, c, exp) : 0;
 }
