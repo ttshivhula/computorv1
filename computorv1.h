@@ -6,7 +6,7 @@
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 10:40:20 by ttshivhu          #+#    #+#             */
-/*   Updated: 2018/09/11 11:45:21 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:50:46 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef	struct			s_values
 {
 	double				value;
-	unsigned int		exponent;
+	int					exponent;
 	struct s_values		*next;
 }						t_values;
 
