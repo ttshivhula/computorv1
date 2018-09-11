@@ -6,7 +6,7 @@
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 10:39:53 by ttshivhu          #+#    #+#             */
-/*   Updated: 2018/09/11 11:36:16 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:56:49 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static double	concat(int a, int b)
 {
 	double c;
-	
+
 	c = (double)b;
-	while(c > 1.0f)
+	while (c > 1.0f)
 		c *= 0.1f;
 	c = (double)a + c;
-	return c; 
+	return (c);
 }
 
 static int		get_exponent(char **str)
@@ -29,12 +29,10 @@ static int		get_exponent(char **str)
 
 	exp = 0;
 	while (*(*str) == '*' || *(*str) == 'X' || *(*str) == '^')
-	{
 		(*str)++;
-	}
 	while (isdigit(*(*str)))
 	{
-		exp	*= 10;
+		exp *= 10;
 		exp += *(*str) - '0';
 		(*str)++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:38:22 by ttshivhu          #+#    #+#             */
-/*   Updated: 2018/09/11 11:42:57 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2018/09/11 12:00:06 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void		add_val(t_values **head, double value, int exponent)
 	}
 }
 
-static int	deletenode(t_values **head_ref) 
+static int	deletenode(t_values **head_ref)
 {
 	t_values	*temp;
 	t_values	*prev;
-	
+
 	temp = *head_ref;
 	if (temp != NULL && temp->value == 0)
 	{
@@ -73,7 +73,7 @@ static int	deletenode(t_values **head_ref)
 	prev->next = temp->next;
 	free(temp);
 	return (1);
-} 
+}
 
 void		clean(t_values **head)
 {

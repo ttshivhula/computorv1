@@ -6,12 +6,11 @@
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:12:55 by ttshivhu          #+#    #+#             */
-/*   Updated: 2018/09/11 11:46:18 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:54:26 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <computorv1.h>
-
 
 static int		exponent(t_values *v)
 {
@@ -38,11 +37,11 @@ static void		evaluate(t_values *v)
 	while (v)
 	{
 		if (v->exponent == 2)
-			a = v->value;	
+			a = v->value;
 		if (v->exponent == 1)
-			b = v->value;	
+			b = v->value;
 		if (v->exponent == 0)
-			c = v->value;	
+			c = v->value;
 		v = v->next;
 	}
 	ft_ans(a, b, c, exp);
@@ -73,7 +72,7 @@ int				main(int c, char **v)
 {
 	t_values	*values;
 	char		*str;
-	
+
 	values = NULL;
 	if (c == 2)
 	{
