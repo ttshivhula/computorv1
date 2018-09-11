@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <ctype.h>
+# define ABS(x) (((x) < 0) ? -(x) : (x))
 
 typedef	struct			s_values
 {

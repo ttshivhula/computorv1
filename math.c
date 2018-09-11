@@ -39,13 +39,16 @@ static void		solve(double a, double b, double c, int exp)
 {
 	double	x1;
 	double	x2;
+	int	comp;
 
-	x1 = (-b + root(b * b - 4 * a * c)) / (2 * a);
-	x2 = (-b - root(b * b - 4 * a * c)) / (2 * a);
+	comp = ((b * b - 4 * a * c) < 0) ? 1 : 0;
+	x1 = (-b + root(ABS(b * b - 4 * a * c))) / (2 * a);
+	x2 = (-b - root(ABS(b * b - 4 * a * c))) / (2 * a);
 	if (exp == 2)
 	{
-		printf("Discriminant is strictly positive, the two solutions are:\n");
-		printf("%f\n%f\n", x1, x2);
+		printf("The two solutions are:\n");
+		(!comp) ? printf("%f\n%f\n", x1, x2) :
+			printf("%fi\n%fi\n", x1, x2);
 	}
 	else
 	{
