@@ -12,14 +12,15 @@
 
 NAME = computor
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I.
+CFLAGS = -Wall -Werror -Wextra -Iglibft -I.
 SRC = lists.c math.c read.c main.c \
 
 OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc $(OBJ) $(CFLAGS) -o $(NAME)
+	@make -C glibft
+	gcc $(OBJ) $(CFLAGS) -Lglibft -lftg -o $(NAME)
 	@printf "\x1b[32mCompiled $(NAME)\x1b[0m\n"
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:38:22 by ttshivhu          #+#    #+#             */
-/*   Updated: 2018/09/11 12:00:06 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2018/10/05 09:53:35 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ static int	val_exist(t_values **head, double value, int exponent)
 	return (0);
 }
 
-void		add_val(t_values **head, double value, int exponent)
+void		add_val(t_values **head, double value,
+		int exponent, t_garbage **gb)
 {
 	t_values *tmp;
 
 	if (!*head)
 	{
-		*head = (t_values *)malloc(sizeof(t_values));
+		*head = (t_values *)GMALLOC(gb, sizeof(t_values));
 		(*head)->value = value;
 		(*head)->exponent = exponent;
 		(*head)->next = NULL;
@@ -43,7 +44,7 @@ void		add_val(t_values **head, double value, int exponent)
 	}
 	if (!val_exist(head, value, exponent))
 	{
-		tmp = (t_values *)malloc(sizeof(t_values));
+		tmp = (t_values *)GMALLOC(gb ,sizeof(t_values));
 		tmp->value = value;
 		tmp->exponent = exponent;
 		tmp->next = *head;
@@ -51,7 +52,7 @@ void		add_val(t_values **head, double value, int exponent)
 	}
 }
 
-static int	deletenode(t_values **head_ref)
+static int	deletenode(t_values **head_ref, t_garbage **gb)
 {
 	t_values	*temp;
 	t_values	*prev;
@@ -60,7 +61,7 @@ static int	deletenode(t_values **head_ref)
 	if (temp != NULL && temp->value == 0)
 	{
 		*head_ref = temp->next;
-		free(temp);
+		GKILL(gb, temp);
 		return (1);
 	}
 	while (temp != NULL && temp->value != 0)
@@ -71,15 +72,15 @@ static int	deletenode(t_values **head_ref)
 	if (temp == NULL)
 		return (0);
 	prev->next = temp->next;
-	free(temp);
+	GKILL(gb, temp);
 	return (1);
 }
 
-void		clean(t_values **head)
+void		clean(t_values **head, t_garbage **gb)
 {
 	int ret;
 
-	ret = deletenode(head);
+	ret = deletenode(head, gb);
 	if (ret)
-		clean(head);
+		clean(head, gb);
 }

@@ -6,7 +6,7 @@
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 10:39:53 by ttshivhu          #+#    #+#             */
-/*   Updated: 2018/09/11 12:47:26 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2018/10/05 09:48:12 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static double	get_num(char **str, int *multi)
 	return (concat(first, last) * sign * (*multi));
 }
 
-void			read_values(char *s, t_values **values)
+void			read_values(char *s, t_values **values, t_garbage **gb)
 {
 	int		multi;
 	int		exp;
@@ -101,11 +101,11 @@ void			read_values(char *s, t_values **values)
 	{
 		n = get_num(&s, &multi);
 		if (*s == '+' || *s == '-')
-			add_val(values, n, 0);
+			add_val(values, n, 0, gb);
 		else
 		{
 			exp = get_exponent(&s);
-			add_val(values, n, exp);
+			add_val(values, n, exp, gb);
 		}
 	}
 }

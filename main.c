@@ -6,7 +6,7 @@
 /*   By: ttshivhu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:12:55 by ttshivhu          #+#    #+#             */
-/*   Updated: 2018/09/11 12:30:20 by ttshivhu         ###   ########.fr       */
+/*   Updated: 2018/10/05 09:51:32 by ttshivhu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		evaluate(t_values *v)
 	ft_ans(a, b, c, exp);
 }
 
-static char		*spaces(char *s)
+static char		*spaces(char *s, t_garbage **gb)
 {
 	int		i;
 	int		j;
@@ -56,7 +56,7 @@ static char		*spaces(char *s)
 	i = 0;
 	while (s[i])
 		i++;
-	ret = malloc(sizeof(char) * i + 1);
+	ret = GMALLOC(gb, sizeof(char) * i + 1);
 	i = -1;
 	j = -1;
 	while (s[++i])
@@ -72,13 +72,16 @@ int				main(int c, char **v)
 {
 	t_values	*values;
 	char		*str;
+	t_garbage	*mem;
 
+	mem = NULL;
 	values = NULL;
 	if (c == 2)
 	{
-		str = spaces(v[1]);
-		read_values(str, &values);
-		clean(&values);
+		str = spaces(v[1], &mem);
+		read_values(str, &values, &mem);
+		clean(&values, &mem);
 		evaluate(values);
 	}
+	GCOLLECT(mem);
 }
